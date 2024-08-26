@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth-guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { GoogleOAuthGuard } from './guards/google-oauth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -14,6 +15,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
   @UseGuards(LocalAuthGuard)
+  @ApiTags('Auth')
   @Post('login')
   async login(
     @CurrentUser() user: UserDocument,
