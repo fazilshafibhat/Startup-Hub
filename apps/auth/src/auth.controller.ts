@@ -19,7 +19,6 @@ export class AuthController {
     @CurrentUser() user: UserDocument,
     @Res({ passthrough: true }) response: Response,
   ) {
-    console.log(`Login attempt for user: ${user.email}`)
     try {
       const jwt = await this.authService.login(user, response);
       this.logger.debug(`JWT generated for user: ${user.email}`);

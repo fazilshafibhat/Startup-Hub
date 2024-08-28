@@ -2,6 +2,7 @@ import {
   IsArray,
   IsBoolean,
   IsEmail,
+  IsIn,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -15,11 +16,21 @@ export class CreateUserDto {
   @IsStrongPassword()
   password: string;
 
+  // @IsOptional()
+  // @IsArray()
+  // @IsString({ each: true })
+  // @IsNotEmpty({ each: true })
+  // roles?: string[];
+
+  // @IsOptional()
+  // @IsString()
+  // @IsNotEmpty()
+  // role?: string;
+
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  @IsNotEmpty({ each: true })
-  roles?: string[];
+  @IsString()
+  @IsIn(['admin', 'companies', 'freelancer', 'jobSeeker']) // Add enum validation
+  role?: string;
 
   @IsBoolean()
   @IsOptional()

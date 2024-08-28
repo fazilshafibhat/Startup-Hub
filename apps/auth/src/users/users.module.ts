@@ -6,6 +6,7 @@ import { UsersRepository } from './user.repository';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ResetTokenRepository } from './reset_token.repository';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { ResetTokenRepository } from './reset_token.repository';
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService, UsersRepository, ResetTokenRepository],
+  providers: [UsersService, UsersRepository, ResetTokenRepository, JwtService],
   exports: [UsersService],
 })
 export class UsersModule {}

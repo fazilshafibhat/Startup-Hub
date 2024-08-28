@@ -84,42 +84,6 @@ export class UsersService {
   }
 
 
-  // async sendOtp(email: string) {
-  //   const user = await this.usersRepository.findOne({ email });
-  //   if (!user) {
-  //     throw new BadRequestException('User not found.');
-  //   }
-
-  //   const otp = Math.floor(Math.random() * 100000 + 1);
-  //   await this.usersRepository.findOneAndUpdate(
-  //     { _id: user._id },
-  //     { $set: { verificationCode: otp } },
-  //   );
-
-  //   this.notificationsService.emit('notify_email', {
-  //     email: 'fazil.bgsbu2016@gmail.com',
-  //     text: `Your OTP for password reset is: ${otp}.`,
-  //   });
-  //   return { message: 'OTP sent' }
-  // }
-
-  // async verifyOtpAndResetPassword(email: string, otp: string, newPassword: string) {
-  //   const user = await this.usersRepository.findOne({ email });
-  //   if (!user) {
-  //     throw new BadRequestException('User not found.');
-  //   }
-
-  //   if (user.verificationCode !== otp) {
-  //     throw new BadRequestException('Invalid OTP.');
-  //   }
-
-  //   const hashedPassword = await bcrypt.hash(newPassword, 10);
-  //   return this.usersRepository.findOneAndUpdate(
-  //     { _id: user._id },
-  //     { $set: { password: hashedPassword, verificationCode: null } },
-  //   );
-  // }
-
   async changePassword(userId: string, oldPassword: string, newPassword: string) {
     const user = await this.usersRepository.findById(userId);
     if (!user) {

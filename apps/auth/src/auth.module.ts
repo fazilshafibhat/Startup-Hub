@@ -34,7 +34,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     }),
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        // secret: configService.get<string>('JWT_SECRET'),
+        secret:'default_jwt_secret',
         signOptions: {
           expiresIn: `${configService.get('JWT_EXPIRATION')}s`,
         },

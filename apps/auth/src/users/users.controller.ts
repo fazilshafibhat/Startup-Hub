@@ -1,11 +1,12 @@
 import { Body, Controller, Get, Post, Put, Req, Res, UseGuards } from '@nestjs/common';
-import { CurrentUser, UserDocument } from '@app/common';
+import { AuthGuard, CurrentUser, UserRole, RolesGuard, UserDocument } from '@app/common';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './user.service';
 import { VerifyUserDto } from './dto/verify-user.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ForgotPasswordDto, ResetPasswordDto } from './dto/forgot-password.dto';
+import { Roles } from '@app/common';
 
 @Controller('auth/users')
 export class UsersController {
@@ -50,7 +51,8 @@ export class UsersController {
   }
 
 
-  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.Freelancer)
+  @UseGuards(AuthGuard, RolesGuard)
   @Get()
   async getUser(@CurrentUser() user: UserDocument) {
     return { "user profile": user };

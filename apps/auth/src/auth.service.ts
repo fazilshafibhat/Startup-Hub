@@ -22,6 +22,7 @@ export class AuthService {
     try {
       const tokenPayload: TokenPayload = {
         userId: user._id.toHexString(),
+        role: user.role
       };
 
       const expires = new Date();
