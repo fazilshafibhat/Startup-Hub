@@ -51,7 +51,7 @@ export class UsersController {
   }
 
 
-  @Roles(UserRole.Freelancer)
+  @Roles(UserRole.Admin)
   @UseGuards(AuthGuard, RolesGuard)
   @Get()
   async getUser(@CurrentUser() user: UserDocument) {

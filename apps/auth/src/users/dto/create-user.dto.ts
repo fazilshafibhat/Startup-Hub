@@ -16,25 +16,14 @@ export class CreateUserDto {
   @IsStrongPassword()
   password: string;
 
-  // @IsOptional()
-  // @IsArray()
-  // @IsString({ each: true })
-  // @IsNotEmpty({ each: true })
-  // roles?: string[];
-
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // role?: string;
-
   @IsOptional()
   @IsString()
-  @IsIn(['admin', 'companies', 'freelancer', 'jobSeeker']) // Add enum validation
+  @IsIn(['admin', 'companies', 'freelancer', 'jobSeeker']) 
   role?: string;
 
   @IsBoolean()
   @IsOptional()
-  verified: boolean; // Make this required
+  verified: boolean;
 
   @IsString()
   @IsNotEmpty()

@@ -42,6 +42,6 @@ export class AuthController {
   @UseGuards(GoogleOAuthGuard)
   async googleAuthRedirect(@Request() req, @Res() res: Response) {
     const token = await this.authService.googleLogin(req);
-    res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`);
+    res.redirect(`FRONTEND_URL/auth/callback?token=${token}`);
   }
 }
