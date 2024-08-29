@@ -17,6 +17,7 @@ export class NotificationsService {
       refreshToken: this.configService.get('GOOGLE_OAUTH_REFRESH_TOKEN'),
     },
   });
+
   
   async notifyEmail({ email, html }: NotifyEmailDto) {
     await this.transporter.sendMail({
