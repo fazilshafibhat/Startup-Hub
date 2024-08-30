@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notifications
+  name: notifications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifications
+  template:
+    metadata:
+      labels:
+        app: notifications
+    spec:
+      containers:
+        - name: notifications
+          image: us-east4-docker.pkg.dev/nestjsmicro-433113/notifications/production
+          env:
+            - name: PORT
+              value: '3000'
+            - name: GOOGLE_OAUTH_CLIENT_ID
+              value: '628970471432-h13gvfsgekkkvl95qci5ppvd0umabd52.apps.googleusercontent.com'
+            - name: SMTP_USER
+              value: 'fazil.bgsbu2016@gmail.com'
+            - name: GOOGLE_OAUTH_CLIENT_SECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: google
+                  key: clientSecret
+            - name: GOOGLE_OAUTH_REFRESH_TOKEN
+              valueFrom: 
+                secretKeyRef:
+                  name: google
+                  key: refreshTokenKey
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: connectionString
+          ports:
+            - containerPort: 3000
