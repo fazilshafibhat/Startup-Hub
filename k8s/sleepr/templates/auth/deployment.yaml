@@ -31,10 +31,11 @@ spec:
             - name: NOTIFICATIONS_PORT
               value: '3000'
             - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb
-                  key: connectionString
+              value: mongodb+srv://fazilbgsbu2016:yzKUP4mu7N9RNO8D@cluster0.b9k8q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: mongodb
+              #     key: connectionString
           ports:
             - containerPort: 3002
             - containerPort: 3003
